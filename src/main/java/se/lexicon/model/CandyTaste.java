@@ -2,7 +2,7 @@ package se.lexicon.model;
 
 public enum CandyTaste  {
 
-    SWEET, SOUR,SALTY, STRAWBERRY, CHILLY;
+    CHILI, SWEET, DARK, SALTY, STRAWBERRY, MINT;
 
 
 }

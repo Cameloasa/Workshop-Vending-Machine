@@ -12,16 +12,23 @@ public class App
 {
     public static void main( String[] args ) {
 
-        Drink water = new Drink(10, "Water", "no taste", false);
-        Drink cola = new Drink(20, "Cola", "Lemon", true);
+        Drink water = new Drink(10, "Water", "Lemonade", false);
+        Drink cola = new Drink(15, "Cola", "Cola", true);
 
-        Candy gum = new Candy(10, "Gum", CandyType.GUM, CandyTaste.SALTY);
+        Candy gum = new Candy(20, "Gum", CandyType.GUM, CandyTaste.SALTY);
+        Candy chocolate = new Candy(25,"Candy bar", CandyType.CHOCOLATE,CandyTaste.STRAWBERRY);
 
-        Snack snack = new Snack(15, "Snack", SnackType.POPCORN, "Sweet");
+        Snack popcorn = new Snack(30, "Snack", SnackType.POPCORN, "Chilly");
+        Snack chips = new Snack(35,"Chips",SnackType.CHIPS,"Sour");
 
 
-
-        Product [] products = {water,cola,gum,snack};
+        Product [] products = {
+                water,
+                cola,
+                gum,
+                chocolate,
+                popcorn,
+                chips};
 
         VendingMachineImpl vendingMachine = new VendingMachineImpl(products);
         vendingMachine.addCurrency(10);
@@ -29,15 +36,11 @@ public class App
         vendingMachine.addCurrency(5);
         System.out.println(vendingMachine.getBalance()); // 15
 
-        vendingMachine.request(3);
-        System.out.println(vendingMachine.getDescription(1));
+        System.out.println(Arrays.toString(vendingMachine.Products()));
 
-
-        vendingMachine.request(1);
         System.out.println(vendingMachine.getBalance());
-
+        System.out.println(Arrays.toString(vendingMachine.Products()));
         System.out.println(vendingMachine.getDescription(1));
-        // call request method 4
 
     }
 

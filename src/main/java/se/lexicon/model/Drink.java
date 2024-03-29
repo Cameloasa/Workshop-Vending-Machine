@@ -11,13 +11,6 @@ public final class Drink extends Product {
         this.carbo = carbo;
     }
 
-    public Drink(double price, String productName, String taste) {
-        super(price, productName);
-        this.taste = taste;
-    }
-
-
-
 
     @Override
     public String examine() {

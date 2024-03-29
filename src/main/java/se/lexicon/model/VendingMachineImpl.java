@@ -7,7 +7,7 @@ public class VendingMachineImpl implements IVendingMachine{
     //Fields
      private Product [] products; // {watter, cola, gum,snacks}
      private int depositPool; // 0
-    private static final int [] VALID_AMOUNTS = {5,10,20};
+    private static final int [] VALID_AMOUNTS = {5,10,20,50,100,500,1000};
 
 
 
@@ -26,10 +26,11 @@ public class VendingMachineImpl implements IVendingMachine{
       for(int validAmount :VALID_AMOUNTS ){
           if(validAmount == amount){
               depositPool += amount;
-              return;
+
+              break;
           }
       }
-      throw new IllegalArgumentException("Invalid amount");
+
     }
 
 
@@ -53,7 +54,7 @@ public class VendingMachineImpl implements IVendingMachine{
                 return product.getProductName();
             }
         }
-        throw new IllegalArgumentException("Product with id" + id + "not found");
+       return null;
     }
 
     @Override
@@ -68,25 +69,25 @@ public class VendingMachineImpl implements IVendingMachine{
     }
     @Override
     public Product request(int id) {
-        // iterate on the array
-        for (Product product : products) {
-            // check the id to find
-            if (product.getId() == id) {
-                // if id exist in the array of products
-                if (depositPool >= product.getPrice()) {
-                    // check if the product price is <= depositPool
-                    depositPool -= product.getPrice();
-                    // count and modify the depositPool
-                    return product;
-                    // return the found product
-                } else {
-                    break;
+        for (int i = 0 ; i < products.length ; i++){
 
+            if (id == products[i].getId()){
+                if (depositPool >= products[i].getPrice()) {
+                    depositPool -= products[i].getPrice();
+                    return products[i];
                 }
-
             }
         }
-      return null;
+        // iterate on the array
+        // check the id to find
+        // if id exist in the array of products
+        // check if the product price is <= depositPool
+        // count and modify the depositPool
+        // return the found product
+
+
+        return null;
+
     }
 
     private Product findProductById(int id) {
@@ -99,7 +100,8 @@ public class VendingMachineImpl implements IVendingMachine{
     }
 
 
-    }
+
+}
 
 
 

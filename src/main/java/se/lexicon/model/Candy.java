@@ -15,9 +15,6 @@ public final class Candy extends Product {
 
 
 
-
-
-
     @Override
     public String examine() {
         return "Product name : " + getProductName() + ", Price : " + getPrice() + ",Taste :" + taste + ", Type" + type;
