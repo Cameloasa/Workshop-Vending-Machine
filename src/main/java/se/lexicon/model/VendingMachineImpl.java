@@ -26,10 +26,10 @@ public class VendingMachineImpl implements IVendingMachine{
       for(int validAmount :VALID_AMOUNTS ){
           if(validAmount == amount){
               depositPool += amount;
-              break;
+              return;
           }
       }
-        //if (!isValid) throw new IllegalArgumentException("invalid amount");
+      throw new IllegalArgumentException("Invalid amount");
     }
 
 
@@ -53,7 +53,7 @@ public class VendingMachineImpl implements IVendingMachine{
                 return product.getProductName();
             }
         }
-        return null;
+        throw new IllegalArgumentException("Product with id" + id + "not found");
     }
 
     @Override
@@ -80,14 +80,25 @@ public class VendingMachineImpl implements IVendingMachine{
                     return product;
                     // return the found product
                 } else {
+                    break;
 
-                    return null;
                 }
 
             }
         }
+      return null;
+    }
+
+    private Product findProductById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
         return null;
     }
+
+
     }
 
 

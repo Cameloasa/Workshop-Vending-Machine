@@ -19,6 +19,8 @@ public class App
 
         Snack snack = new Snack(15, "Snack", SnackType.POPCORN, "Sweet");
 
+
+
         Product [] products = {water,cola,gum,snack};
 
         VendingMachineImpl vendingMachine = new VendingMachineImpl(products);
@@ -27,7 +29,7 @@ public class App
         vendingMachine.addCurrency(5);
         System.out.println(vendingMachine.getBalance()); // 15
 
-        vendingMachine.request(1);
+        vendingMachine.request(3);
         System.out.println(vendingMachine.getDescription(1));
 
 
