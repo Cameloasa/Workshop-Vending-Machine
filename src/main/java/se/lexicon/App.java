@@ -36,7 +36,10 @@ public class App
         vendingMachine.addCurrency(5);
         System.out.println(vendingMachine.getBalance()); // 15
 
-        System.out.println(Arrays.toString(vendingMachine.Products()));
+        for (String string : vendingMachine.getProducts()) {
+            System.out.println(string);
+            System.out.println("-----");
+        }
 
         System.out.println(vendingMachine.getBalance());
         System.out.println(Arrays.toString(vendingMachine.Products()));

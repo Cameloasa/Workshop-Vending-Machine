@@ -11,4 +11,5 @@ public interface IVendingMachine {
     int endSession();
     String getDescription(int id);
     String[] Products();
+    String [] getProducts();
 }

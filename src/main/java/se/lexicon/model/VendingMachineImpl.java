@@ -3,12 +3,11 @@ package se.lexicon.model;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 
-public class VendingMachineImpl implements IVendingMachine{
+public class VendingMachineImpl implements IVendingMachine {
     //Fields
-     private Product [] products; // {watter, cola, gum,snacks}
-     private int depositPool; // 0
-    private static final int [] VALID_AMOUNTS = {5,10,20,50,100,500,1000};
-
+    private Product[] products; // {watter, cola, gum,snacks}
+    private int depositPool; // 0
+    private static final int[] VALID_AMOUNTS = {5, 10, 20, 50, 100, 500, 1000};
 
 
     // constructor
@@ -23,13 +22,13 @@ public class VendingMachineImpl implements IVendingMachine{
         // No -< throw error with a proper message
         //boolean isValid = false;
 
-      for(int validAmount :VALID_AMOUNTS ){
-          if(validAmount == amount){
-              depositPool += amount;
+        for (int validAmount : VALID_AMOUNTS) {
+            if (validAmount == amount) {
+                depositPool += amount;
 
-              break;
-          }
-      }
+                break;
+            }
+        }
 
     }
 
@@ -41,24 +40,24 @@ public class VendingMachineImpl implements IVendingMachine{
 
 
     @Override
-    public int endSession () {
+    public int endSession() {
         int remainingAmount = depositPool;
         depositPool = 0;
         return remainingAmount;
     }
 
     @Override
-    public String getDescription ( int id){
-        for (Product product : products){
-            if (product.getId() == id){
+    public String getDescription(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
                 return product.getProductName();
             }
         }
-       return null;
+        return null;
     }
 
     @Override
-    public String[] Products () {
+    public String[] Products() {
         String[] productsStr = new String[products.length]; // [null, null null]
         for (int i = 0; i < products.length; i++) {
             String productDescription = products[i].examine();
@@ -67,11 +66,22 @@ public class VendingMachineImpl implements IVendingMachine{
         return productsStr;
 
     }
+
+    @Override
+    public String[] getProducts() {
+        String[] productsAsString = new String[products.length];
+        for (int i = 0; i < products.length; i++) {
+            productsAsString[i] = products[i].examine().concat(" price: " + products[i].getPrice());
+        }
+        return productsAsString;
+    }
+
+
     @Override
     public Product request(int id) {
-        for (int i = 0 ; i < products.length ; i++){
+        for (int i = 0; i < products.length; i++) {
 
-            if (id == products[i].getId()){
+            if (id == products[i].getId()) {
                 if (depositPool >= products[i].getPrice()) {
                     depositPool -= products[i].getPrice();
                     return products[i];
@@ -98,10 +108,11 @@ public class VendingMachineImpl implements IVendingMachine{
         }
         return null;
     }
-
-
-
 }
+
+
+
+
 
 
 
